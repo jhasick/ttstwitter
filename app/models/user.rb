@@ -6,7 +6,11 @@ class User < ApplicationRecord
 
   serialize :following, Array
 
+  mount_uploader :avatar, AvatarUploader
+
   has_many :tweets
 
+  validates :username, presence: true
+  validates :username, uniqueness: true
 
 end

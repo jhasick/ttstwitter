@@ -1,4 +1,12 @@
+<% if current_user != nil %>
+
 <h1><%= current_user.username %>'s Twitter Feed</h1>
+
+<% if current_user.avatar.url != nil %>
+<%= image_tag current_user.avatar.url, size: 50 %>
+<% end %>
+
+
 
 <div class="container-fluid">
 	<% @following_tweets.each do |tweet| %>
@@ -9,3 +17,5 @@
 	</div>
 	<% end %>
 </div>
+
+<% end %>

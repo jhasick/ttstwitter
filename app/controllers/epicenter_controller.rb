@@ -5,6 +5,10 @@ before_action :authenticate_user!
   def feed
   	@following_tweets = []
 
+  	if current_user == nil
+  		return
+  	end
+
   	Tweet.all.each do |tweet|
   		if current_user.following.include?(tweet.user_id) ||
   			current_user.id == tweet.user_id
@@ -29,5 +33,9 @@ before_action :authenticate_user!
   	current_user.save
 
   	redirect_to show_user_path(id: params[:id])
+  end
+
+  def tag_tweets
+  	@tag = Tag.find(params[:id])
   end
 end

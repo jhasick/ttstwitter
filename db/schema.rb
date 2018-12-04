@@ -10,13 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_155051) do
+ActiveRecord::Schema.define(version: 2018_12_04_150151) do
+
+  create_table "tags", force: :cascade do |t|
+    t.string "phrase"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tweet_tags", force: :cascade do |t|
+    t.integer "tweet_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.string "message"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,6 +45,8 @@ ActiveRecord::Schema.define(version: 2018_12_03_155051) do
     t.string "name"
     t.text "bio"
     t.text "following"
+    t.string "location"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
