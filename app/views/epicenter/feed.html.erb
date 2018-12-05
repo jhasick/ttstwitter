@@ -1,15 +1,18 @@
 <% if current_user != nil %>
 
-<h1 class="jumbotron" style="text-align: right; background-color: lightgreen"><%= current_user.username.capitalize %>'s Twitter Feed
-
-<% if current_user.avatar.url != nil %>
-<%= image_tag current_user.avatar.url, size: 75 %>
-<% end %>
+<h1 class="jumbotron" style="text-align: left; background-color: lightgreen"><%= current_user.username.capitalize %>'s Twitter Feed
 </h1>
 
+	<div class="col-md-3">
+		<div class="well">
+		<p>User:<%= current_user.name %></p>
+		<p>Bio:<%= current_user.bio %></p>
+		<p>Location:<%= current_user.location %></p>
+		</div>
+	</div>
 	
 
-	<div class="col-md-6 col-md-offset-3" style="background-color: lightblue">
+	<div class="col-md-6" style="background-color: lightblue">
 	<% @following_tweets.each do |tweet| %>
 		<div class="well">
 			<p>
@@ -25,6 +28,10 @@
 		</div>
 	
 	<% end %>
+	</div>
+
+	<div class="col-md-3">
+
 	</div>
 
 
