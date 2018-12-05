@@ -9,22 +9,19 @@
 
 	
 
-	<div class="container-fluid">
+	<div class="col-md-6 col-md-offset-3" style="background-color: lightblue">
 	<% @following_tweets.each do |tweet| %>
 		<div class="well">
-		<p>
+			<p>
 			<% if tweet.user.avatar.url != nil %>
 			<%= image_tag tweet.user.avatar.url, size: 30 %>
 			<% end %>
 
 			@<%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %>
-			
-				
-		</p>
-		<p><%= tweet.message.html_safe %></p>
+			</p>
+		<p class="well"><%= tweet.message.html_safe %></p>
 		<h6><%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %></h6>
 		<h6><%= tweet.created_at.strftime('%b%e') if Time.now - tweet.created_at >= 86400 %></h6>
-		
 		</div>
 	
 	<% end %>
